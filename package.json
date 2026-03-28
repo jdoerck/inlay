@@ -1,0 +1,13 @@
+{
+  "name": "chord-pro",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Markdown musical tablature parser supporting guitar and ukulele",
+  "main": "src/parser.js",
+  "bin": {
+    "chord-pro": "src/cli.js"
+  },
+  "scripts": {
+    "test": "node --test test/"
+  }
+}

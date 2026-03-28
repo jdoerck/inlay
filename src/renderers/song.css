@@ -1,0 +1,209 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: Georgia, serif;
+  background: #fafafa;
+  color: #222;
+  padding: 2rem;
+}
+
+.song {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ── Meta header ── */
+
+.song-meta {
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #333;
+  padding-bottom: 1rem;
+}
+
+.song-title {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.song-artist {
+  font-size: 1.1rem;
+  color: #555;
+  margin-top: .25rem;
+}
+
+.song-directives {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin-top: .5rem;
+  font-size: .9rem;
+  color: #666;
+}
+
+/* ── Chord diagrams ── */
+
+.chord-diagrams {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.chord-diagram {
+  text-align: center;
+}
+
+.chord-name {
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: .25rem;
+}
+
+.chord-unknown {
+  font-size: 2rem;
+  color: #aaa;
+}
+
+/* ── Song body (2-column) ── */
+
+.song-body {
+  columns: 2;
+  column-gap: 2.5rem;
+  column-fill: balance;
+}
+
+.song-section {
+  margin-bottom: 1.25rem;
+  break-inside: avoid;
+}
+
+.section-label {
+  font-size: .8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: #888;
+  border-left: 3px solid #ccc;
+  padding-left: .5rem;
+  margin-bottom: .4rem;
+}
+
+/* ── Chord/lyric lines ── */
+
+.song-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  margin-bottom: .1rem;
+  font-family: Georgia, serif;
+  font-size: .9rem;
+}
+
+.segment {
+  display: inline-flex;
+  flex-direction: column;
+  padding-right: 0.4em;
+}
+
+.chord {
+  font-family: Menlo, Consolas, 'Lucida Console', monospace;
+  font-weight: bold;
+  color: #c0392b;
+  font-size: .75rem;
+  min-height: 1.1em;
+  white-space: pre;
+}
+
+.chord--empty {
+  min-height: 1.1em;
+}
+
+.lyric {
+  font-size: .9rem;
+  white-space: pre;
+}
+
+.song-comment {
+  font-style: italic;
+  color: #888;
+  margin: .25rem 0;
+  font-size: .85rem;
+}
+
+.song-blank {
+  height: .5rem;
+}
+
+/* ── Blockquotes (chorus text, highlighted passages) ── */
+
+.song-blockquote {
+  margin: .25rem 0;
+  padding: .4rem .75rem;
+  border-left: 3px solid #c0392b;
+  background: #fdf5f5;
+  border-radius: 0 4px 4px 0;
+}
+
+/* ── Section reference (↻ Chorus) ── */
+
+.section-ref {
+  display: inline-block;
+  margin: .35rem 0;
+  padding: .15rem .6rem;
+  font-family: 'Courier New', monospace;
+  font-size: .8rem;
+  font-weight: bold;
+  color: #c0392b;
+  border: 1px solid #e8c4c0;
+  border-radius: 3px;
+  background: #fdf5f5;
+}
+
+/* ── Print ── */
+
+@media print {
+  body {
+    background: white;
+    padding: .35in .4in;
+    font-size: 9pt;
+  }
+
+  .song-title { font-size: 1.4rem; }
+  .song-meta  { margin-bottom: .75rem; padding-bottom: .5rem; }
+
+  /* Shrink diagrams and pack them tightly */
+  .chord-diagrams {
+    gap: .5rem;
+    margin-bottom: .75rem;
+    break-after: avoid;
+  }
+  .chord-diagram svg  { width: 44px; height: auto; }
+  .chord-name         { font-size: .7rem; margin-bottom: .1rem; }
+
+  .song-body {
+    columns: 2;
+    column-gap: .3in;
+  }
+
+  .song-section       { margin-bottom: .6rem; break-inside: avoid; }
+  .section-label      { font-size: .7rem; margin-bottom: .2rem; }
+
+  .song-line          { font-size: .8rem; margin-bottom: 0; }
+  .song-line--lyrics-only { line-height: 1.35; }
+  .chord              { color: #000; font-size: .65rem; min-height: 1em; }
+  .chord--empty       { min-height: 1em; }
+  .lyric              { font-size: .8rem; }
+
+  .song-blank         { height: .2rem; }
+  .song-blockquote    { padding: .2rem .5rem; margin: .1rem 0; }
+  .section-ref        { margin: .15rem 0; padding: .1rem .4rem; }
+}
+
+/* ── Mobile ── */
+
+@media (max-width: 600px) {
+  .song-body {
+    columns: 1;
+  }
+}
