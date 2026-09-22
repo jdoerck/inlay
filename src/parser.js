@@ -32,7 +32,13 @@ function parseFrontmatter(text) {
     const key = kv[1].toLowerCase();
     const val = kv[2].trim().replace(/^['"]|['"]$/g, '');
 
-    if (val === '') {
+    const flowArray = val.match(/^\[(.*)\]$/);
+    if (flowArray) {
+      meta[key] = flowArray[1] === '' ? [] : flowArray[1]
+        .split(',')
+        .map(s => s.trim().replace(/^['"]|['"]$/g, ''))
+        .filter(s => s !== '');
+    } else if (val === '') {
       meta[key] = [];
       arrayKey = key;
     } else if (key === 'capo' || key === 'tempo') {

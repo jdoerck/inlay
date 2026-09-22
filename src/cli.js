@@ -1,10 +1,6 @@
 #!/usr/bin/env node
-import { readFileSync, writeFileSync, copyFileSync, mkdirSync } from 'fs';
+import { readFileSync, writeFileSync, mkdirSync } from 'fs';
 import { dirname, join, resolve, basename } from 'path';
-import { fileURLToPath } from 'url';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const CSS_SRC = join(__dirname, 'renderers', 'song.css');
 import { parse } from './parser.js';
 import { render as renderAscii } from './renderers/ascii.js';
 import { render as renderHtml } from './renderers/html.js';
@@ -72,8 +68,7 @@ if (args.format === 'html') {
   const outDir = dirname(resolve(outFile));
   mkdirSync(outDir, { recursive: true });
   writeFileSync(outFile, output, 'utf8');
-  copyFileSync(CSS_SRC, join(outDir, 'song.css'));
-  process.stderr.write(`Written to ${outFile} + song.css\n`);
+  process.stderr.write(`Written to ${outFile}\n`);
 } else if (args.output) {
   writeFileSync(args.output, output, 'utf8');
   process.stderr.write(`Written to ${args.output}\n`);

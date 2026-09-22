@@ -1,5 +1,11 @@
+import { readFileSync } from 'fs';
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
 import { lookupChord, stringCount, stringNames } from '../chords/index.js';
 import { extractChords } from '../song.js';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const CSS = readFileSync(join(__dirname, 'song.css'), 'utf8');
 
 const FRETS_SHOWN = 4;
 const SVG_STRING_GAP = 18;
@@ -209,7 +215,9 @@ export function render(song, options = {}) {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${esc(song.meta.title || 'ChordPro Song')}</title>
-<link rel="stylesheet" href="song.css">
+<style>
+${CSS}
+</style>
 </head>
 <body>
 <article class="song">
